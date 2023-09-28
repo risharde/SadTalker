@@ -141,7 +141,7 @@ class AnimateFromCoeff():
         return checkpoint['epoch']
     
     def load_cpk_mapping(self, checkpoint_path, mapping=None, discriminator=None,
-                 optimizer_mapping=None, optimizer_discriminator=None, device='cpu'):
+                 optimizer_mapping=None, optimizer_discriminator=None, device='dml'):
         checkpoint = torch.load(checkpoint_path,  map_location=torch.device(device))
         if mapping is not None:
             mapping.load_state_dict(checkpoint['mapping'])
