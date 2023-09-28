@@ -1,6 +1,10 @@
 # FROM python:3.8.16-bullseye #original from original git repo
 # FROM python:3.8.18-bookworm
 
+# Windows/Linux HOST (not the container necessarily) Machine must have the kernal drivers
+# For Windows: https://www.amd.com/en/developer/resources/rocm-hub/hip-sdk.html (https://rocm.docs.amd.com/en/latest/deploy/windows/quick_start.html)
+# For Linux:  apt install amdgpu-dkms (https://rocm.docs.amd.com/en/latest/deploy/linux/quick_start.html)
+
 # Docker hub: https://hub.docker.com/r/rocm/pytorch/tags?page=1&name=1.12
 FROM rocm/pytorch:rocm5.6_ubuntu20.04_py3.8_pytorch_1.12.1
 ARG DEBIAN_FRONTEND=noninteractive
