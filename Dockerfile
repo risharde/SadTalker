@@ -41,8 +41,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Set the working directory
 WORKDIR /app
 
+RUN mkdir -p /app/SadTalker
+
 # Clone Risharde's forked version of SadTalker repository
-RUN git clone https://github.com/risharde/SadTalker.git
+# RUN rm -rf /app/SadTalker
+# RUN git clone https://github.com/risharde/SadTalker.git
+
+
 
 # Change the working directory to SadTalker
 WORKDIR /app/SadTalker
