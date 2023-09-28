@@ -1,5 +1,12 @@
-FROM python:3.8.16-bullseye
+# FROM python:3.8.16-bullseye #original from original git repo
+# FROM python:3.8.18-bookworm
+
+# Docker hub: https://hub.docker.com/r/rocm/pytorch/tags?page=1&name=1.12
+FROM rocm/pytorch:rocm5.6_ubuntu20.04_py3.8_pytorch_1.12.1
 ARG DEBIAN_FRONTEND=noninteractive
+
+# RUN /opt/rocm/bin/rocminfo
+# RUN /opt/rocm/opencl/bin/clinfo
 
 # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -34,16 +41,21 @@ RUN git checkout docker_amd
 # Install PyTorch with CUDA 11.3 support (NVIDIA)
 # RUN pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
 
+
+# RUN apt install rocm-dev
+
 # TRY pyTorch with AMD SUPPORT (ROCm): Latest version at the time
 # Latest versions: https://pytorch.org/get-started/locally/
 # RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.4.2
 
-# TRY pyTorch with AMD SUPPORT (ROCm): Previou versions at the time
+# TRY pyTorch with AMD SUPPORT (ROCm): Previous versions at the time
 # Previous versions: https://pytorch.org/get-started/previous-versions/
 # RUN pip install torch==1.13.1+rocm5.2 torchvision==0.14.1+rocm5.2 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/rocm5.2
 # RUN pip install torch==1.13.0+rocm5.2 torchvision==0.14.0+rocm5.2 torchaudio==0.13.0 --extra-index-url https://download.pytorch.org/whl/rocm5.2
-RUN pip install torch==1.12.1+rocm5.1.1 torchvision==0.13.1+rocm5.1.1 torchaudio==0.12.1 --extra-index-url  https://download.pytorch.org/whl/rocm5.1.1
+# RUN pip install torch==1.12.1+rocm5.1.1 torchvision==0.13.1+rocm5.1.1 torchaudio==0.12.1 --extra-index-url  https://download.pytorch.org/whl/rocm5.1.1
+# RUN pip install torchaudio==0.12.1
 
+# RUN pip install torch-directml
 # Think about DIRECTML to SUPPORT AMD - THIS MIGHT ONLY BE WINDOWS SPECIFIC - DEFERRED
 # https://github.com/microsoft/DirectML/tree/master/PyTorch
 

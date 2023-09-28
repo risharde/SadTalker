@@ -1,0 +1,1 @@
+docker run -it risharde/ai:sadtalker-amd-latest bash

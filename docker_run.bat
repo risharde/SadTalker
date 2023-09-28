@@ -1,1 +1,1 @@
-docker run --rm -v D:\ai_docker\sadtalker_files:/host_dir risharde/ai:sadtalker-amd-latest --driven_audio /host_dir/audio.wav --source_image /host_dir/photo.png --expression_scale 1.0 --still --result_dir /host_dir
+docker run --rm --privileged -v D:\ai_docker\sadtalker_files:/host_dir risharde/ai:sadtalker-amd-latest --driven_audio /host_dir/audio.wav --source_image /host_dir/photo.png --expression_scale 1.0 --still --result_dir /host_dir
