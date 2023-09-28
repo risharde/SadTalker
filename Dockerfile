@@ -24,11 +24,11 @@ WORKDIR /app
 # Clone Risharde's forked version of SadTalker repository
 RUN git clone https://github.com/risharde/SadTalker.git
 
-# Checkout the docker CPU branch
-RUN git checkout docker_cpu
-
 # Change the working directory to SadTalker
 WORKDIR /app/SadTalker
+
+# Checkout the docker CPU branch
+RUN git checkout docker_cpu
 
 # Install PyTorch with CUDA 11.3 support
 RUN pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
