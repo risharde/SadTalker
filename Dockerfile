@@ -1,13 +1,18 @@
-# FROM python:3.8.16-bullseye #original from original git repo
-# FROM python:3.8.18-bookworm
+#original from original git repo
+FROM python:3.8.16-bullseye
 
+# only to try to get ROCm to work and ROCm just refused to work on container
+# FROM python:3.8.18-bookworm 
+
+# ROCm stuff that just doesn't work
 # Windows/Linux HOST (not the container necessarily) Machine must have the kernal drivers
 # For Windows: https://www.amd.com/en/developer/resources/rocm-hub/hip-sdk.html (https://rocm.docs.amd.com/en/latest/deploy/windows/quick_start.html)
 # For Linux:  apt install amdgpu-dkms (https://rocm.docs.amd.com/en/latest/deploy/linux/quick_start.html)
 # For Linux: apt install rocm-hip-libraries
 
+# Thought this would work for ROCm
 # Docker hub: https://hub.docker.com/r/rocm/pytorch/tags?page=1&name=1.12
-FROM rocm/pytorch:rocm5.6_ubuntu20.04_py3.8_pytorch_1.12.1
+# FROM rocm/pytorch:rocm5.6_ubuntu20.04_py3.8_pytorch_1.12.1
 ARG DEBIAN_FRONTEND=noninteractive
 
 # RUN /opt/rocm/bin/rocminfo
@@ -30,7 +35,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     unzip \
     ffmpeg
 
-RUN apt install rock-dkms -y
+# Tried to get ROCm to work
+# RUN apt install rock-dkms -y
 
 # Set the working directory
 WORKDIR /app
@@ -46,7 +52,10 @@ RUN git fetch
 RUN git checkout docker_amd
 
 # Install PyTorch with CUDA 11.3 support (NVIDIA)
-# RUN pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
+RUN pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
+
+# TRY DIRECTML approach
+RUN pip install pytorch-directml
 
 
 # RUN apt install rocm-dev
@@ -77,5 +86,8 @@ RUN pip install -r requirements.txt
 
 # Download models using the provided script
 RUN chmod +x scripts/download_models.sh && scripts/download_models.sh
+
+# ROCm which didn't work
+# RUN export HSA_OVERRIDE_GFX_VERSION=10.3.0
 
 ENTRYPOINT ["python3", "inference.py"]

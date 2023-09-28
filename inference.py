@@ -142,7 +142,9 @@ if __name__ == '__main__':
     #     args.device = "cpu"
 
     # Rish [09/27/2023] FORCE CUDA ONLY (this will use the rocm library of pytorch since we force that in the Dockerfile)
-    args.device = "cuda"
+    # Rish [09/28/2023] ROCm never got detected, sleepless nights, waste of time, this sucks
+    # args.device = "cuda"
+    args.device = "dml"
 
     main(args)
 
