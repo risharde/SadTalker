@@ -25,6 +25,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     unzip \
     ffmpeg
 
+RUN apt install rock-dkms -y
+
 # Set the working directory
 WORKDIR /app
 
