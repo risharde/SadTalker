@@ -1,5 +1,9 @@
 <div align="center">
 
+For Windows, WSL2 doesn't support AMD GPU according to this unrelated issue post
+Try using Hyper-V with Docker Desktop for Windows
+https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/4883
+
 <img src='https://user-images.githubusercontent.com/4397546/229094115-862c747e-7397-4b54-ba4a-bd368bfe2e0f.png' width='500px'/>
 
 
