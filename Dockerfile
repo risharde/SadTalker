@@ -27,13 +27,16 @@ RUN git clone https://github.com/risharde/SadTalker.git
 # Change the working directory to SadTalker
 WORKDIR /app/SadTalker
 
-# Checkout the docker CPU branch
-RUN git checkout docker_cpu
+# Checkout the docker AMD GPU branch
+RUN git checkout docker_amd
 
-# Install PyTorch with CUDA 11.3 support
-RUN pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
+# Install PyTorch with CUDA 11.3 support (NVIDIA)
+# RUN pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
 
-# Think about DIRECTML to SUPPORT AMD - TODO
+# TRY AMD SUPPORT
+RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.4.2
+
+# Think about DIRECTML to SUPPORT AMD - THIS MIGHT ONLY BE WINDOWS SPECIFIC
 # https://github.com/microsoft/DirectML/tree/master/PyTorch
 
 # Install dlib

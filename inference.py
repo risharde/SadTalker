@@ -141,8 +141,8 @@ if __name__ == '__main__':
     # else:
     #     args.device = "cpu"
 
-    # Rish [09/27/2023] FORCE CPU ONLY
-    args.device = "cpu"
+    # Rish [09/27/2023] FORCE CUDA ONLY (this will use the rocm library of pytorch since we force that in the Dockerfile)
+    args.device = "cuda"
 
     main(args)
 
