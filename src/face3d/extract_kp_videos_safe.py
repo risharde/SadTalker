@@ -16,7 +16,7 @@ from facexlib.detection import init_detection_model
 from facexlib.utils import load_file_from_url
 from src.face3d.util.my_awing_arch import FAN
 
-def init_alignment_model(model_name, half=False, device='dml', model_rootpath=None):
+def init_alignment_model(model_name, half=False, device='cpu', model_rootpath=None):
     if model_name == 'awing_fan':
         model = FAN(num_modules=4, num_landmarks=98, device=device)
         model_url = 'https://github.com/xinntao/facexlib/releases/download/v0.1.0/alignment_WFLW_4HG.pth'
@@ -32,7 +32,7 @@ def init_alignment_model(model_name, half=False, device='dml', model_rootpath=No
 
 
 class KeypointExtractor():
-    def __init__(self, device='dml'):
+    def __init__(self, device='cpu'):
 
         ### gfpgan/weights
         try:
