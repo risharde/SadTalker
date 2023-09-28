@@ -268,7 +268,7 @@ class HourGlass(nn.Module):
 
 class FAN(nn.Module):
 
-    def __init__(self, num_modules=1, end_relu=False, gray_scale=False, num_landmarks=68, device='cuda'):
+    def __init__(self, num_modules=1, end_relu=False, gray_scale=False, num_landmarks=68, device='dml'):
         super(FAN, self).__init__()
         self.device = device
         self.num_modules = num_modules
