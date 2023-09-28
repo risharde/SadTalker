@@ -28,6 +28,7 @@ RUN git clone https://github.com/risharde/SadTalker.git
 WORKDIR /app/SadTalker
 
 # Checkout the docker AMD GPU branch
+RUN git fetch
 RUN git checkout docker_amd
 
 # Install PyTorch with CUDA 11.3 support (NVIDIA)
