@@ -1,5 +1,7 @@
 @echo off
 
+REM https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe
+
 IF NOT EXIST venv (
 python -m venv venv
 ) ELSE (

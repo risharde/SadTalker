@@ -1,4 +1,5 @@
 import torch
+import torch_directml
 from torch import nn
 from src.audio2pose_models.cvae import CVAE
 from src.audio2pose_models.discriminator import PoseSequenceDiscriminator

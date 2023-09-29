@@ -6,6 +6,7 @@ import argparse
 import numpy as np
 from PIL import Image
 import torch
+import torch_directml
 from tqdm import tqdm
 from itertools import cycle
 from torch.multiprocessing import Pool, Process, set_start_method
@@ -16,7 +17,7 @@ from facexlib.detection import init_detection_model
 from facexlib.utils import load_file_from_url
 from src.face3d.util.my_awing_arch import FAN
 
-def init_alignment_model(model_name, half=False, device='dml', model_rootpath=None):
+def init_alignment_model(model_name, half=False, device='cuda', model_rootpath=None):
     if model_name == 'awing_fan':
         model = FAN(num_modules=4, num_landmarks=98, device=device)
         model_url = 'https://github.com/xinntao/facexlib/releases/download/v0.1.0/alignment_WFLW_4HG.pth'
@@ -25,7 +26,7 @@ def init_alignment_model(model_name, half=False, device='dml', model_rootpath=No
 
     model_path = load_file_from_url(
         url=model_url, model_dir='facexlib/weights', progress=True, file_name=None, save_dir=model_rootpath)
-    model.load_state_dict(torch.load(model_path, map_location={'0':device})['state_dict'], strict=True)
+    model.load_state_dict(torch.load(model_path, map_location=device)['state_dict'], strict=True)
     model.eval()
     model = model.to(device)
     return model

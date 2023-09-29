@@ -1,4 +1,6 @@
-import torch, uuid
+import torch
+import torch_directml
+import uuid
 import os, sys, shutil
 from src.utils.preprocess import CropAndExtract
 from src.test_audio2coeff import Audio2Coeff  

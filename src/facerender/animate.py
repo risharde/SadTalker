@@ -9,9 +9,13 @@ import safetensors.torch
 warnings.filterwarnings('ignore')
 
 
+
 import imageio
 import torch
+import torch_directml
 import torchvision
+import torch_directml
+dml = torch_directml.device()
 
 
 from src.facerender.modules.keypoint_detector import HEEstimator, KPDetector
@@ -141,9 +145,9 @@ class AnimateFromCoeff():
         return checkpoint['epoch']
     
     def load_cpk_mapping(self, checkpoint_path, mapping=None, discriminator=None,
-                 optimizer_mapping=None, optimizer_discriminator=None, device='dml'):
-        ' checkpoint = torch.load(checkpoint_path,  map_location=torch.device(device))
-        checkpoint = torch.load(checkpoint_path,  map_location={0:device})
+                 optimizer_mapping=None, optimizer_discriminator=None, device='cuda'):
+        checkpoint = torch.load(checkpoint_path,  map_location=torch.device(device))
+        # checkpoint = torch.load(checkpoint_path,  map_location=dml)
         if mapping is not None:
             mapping.load_state_dict(checkpoint['mapping'])
         if discriminator is not None:

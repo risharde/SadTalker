@@ -2,6 +2,7 @@ import os
 
 from tqdm import tqdm
 import torch
+import torch_directml
 import numpy as np
 import random
 import scipy.io as scio

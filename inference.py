@@ -1,6 +1,7 @@
 from glob import glob
 import shutil
 import torch
+import torch_directml
 from time import  strftime
 import os, sys, time
 from argparse import ArgumentParser
@@ -144,6 +145,7 @@ if __name__ == '__main__':
     # Rish [09/27/2023] FORCE CUDA ONLY (this will use the rocm library of pytorch since we force that in the Dockerfile)
     # Rish [09/28/2023] ROCm never got detected, sleepless nights, waste of time, this sucks
     # args.device = "cuda"
+    # args.device = "dml"
     args.device = "dml"
 
     main(args)
